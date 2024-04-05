@@ -9,6 +9,7 @@ import { Server } from "socket.io";
 dotenv.config();
 const app = express();
 const BASE_URL = process.env.BASE_URL;
+const PORT = process.env.PORT || 8080;
 
 app.use(cors());
 app.use(express.json());
@@ -19,8 +20,8 @@ app.use("/uploads/images", express.static("uploads/images"));
 app.use("/api/auth", AuthRoutes);
 app.use("/api/messages", MessageRoutes);
 
-const server = app.listen(3006, () => {
-  console.log(`Server started on port ${process.env.PORT}`);
+const server = app.listen(PORT, () => {
+  console.log(`Server started on port ${PORT}`);
 });
 
 const io = new Server(server, {
